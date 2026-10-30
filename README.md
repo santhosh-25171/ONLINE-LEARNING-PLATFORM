@@ -19,3 +19,24 @@ services.getCourseService().save(
 
 IDs are assigned by the caller and must be positive. The in-memory data is held only for
 the lifetime of the `LearningPlatformServices` instance; it is not persisted to a database.
+
+## Command-line interface
+
+Each service has its own CLI class in `src/com/learning/CLI`:
+
+- `UserCLI`, `CourseCLI`, `EnrollmentCLI`, `SectionCLI`, and `LessonCLI`
+- `PaymentCLI`, `ReviewCLI`, `CertificateCLI`, and `InstructorEarningCLI`
+- `LessonProgressCLI` and `QuizAttemptCLI`
+
+Compile the Java sources and launch the menu from PowerShell at the repository root:
+
+```powershell
+$sourceFiles = Get-ChildItem -Path .\src -Recurse -Filter *.java |
+    ForEach-Object { $_.FullName }
+javac -d .\out $sourceFiles
+java -cp .\out com.learning.CLI.Main
+```
+
+Each service CLI provides save (create or replace by ID), list, find, and delete actions and
+uses the service-layer validation. Data is held in memory and is discarded when the process
+exits.
