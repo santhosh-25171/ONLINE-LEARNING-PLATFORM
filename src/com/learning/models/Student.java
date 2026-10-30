@@ -3,6 +3,6 @@ package com.learning.models;
 public class Student extends User {
 
     public Student(int userId, String name, String email, String password) {
-        super(userId, name, email, password);
+        super(userId, name, email, password, "STUDENT");
     }
 }
